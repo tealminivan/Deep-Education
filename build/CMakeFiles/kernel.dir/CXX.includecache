@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tmv/Desktop/project/Deep-Education/kernel/csr.h
+stdint.h
+/home/tmv/Desktop/project/Deep-Education/kernel/stdint.h
+
+/home/tmv/Desktop/project/Deep-Education/kernel/kernel.cpp
+cassert
+-
+iostream
+-
+limits
+-
+list
+-
+vector
+-
+omp.h
+-
+string.h
+-
+kernel.h
+/home/tmv/Desktop/project/Deep-Education/kernel/kernel.h
+
+/home/tmv/Desktop/project/Deep-Education/kernel/kernel.h
+csr.h
+/home/tmv/Desktop/project/Deep-Education/kernel/csr.h
+op.h
+/home/tmv/Desktop/project/Deep-Education/kernel/op.h
+
+/home/tmv/Desktop/project/Deep-Education/kernel/op.h
+string
+-
+cstring
+-
+
