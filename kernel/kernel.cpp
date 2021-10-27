@@ -3,8 +3,8 @@
 #include <limits>
 #include <list>
 #include <vector>
-#include <omp.h>
 #include <string.h>
+#include <omp.h>
 
 #include "kernel.h"
 
@@ -27,39 +27,21 @@ void _gspmm(csr_t* snaph, array2d_t<float> & input, array2d_t<float> & output,
     vid_t* offset_list = snaph-> offset;
     vid_t* nebrs_list = snaph-> nebrs;
     
-    bool* visited = new bool[snaph->v_count];
-    for (int i = 0; i < snaph->v_count - 1; i++){
-        visited[i] = false;
-    } 
-
-    int level[snaph->v_count];
-    list<int> queue;
-    visited[0] = true;
-    level[0] = 0;
-    queue.push_back(0);
-    
-
-    while (!queue.empty()){
-        int currVertex = queue.front();
-        queue.pop_front();
+    #pragma omp parallel for
+    for (int currVertex=0; currVertex<snaph->v_count; currVertex++){
         
         if (reverse){
             input.row_normalize(currVertex, snaph->get_degree(currVertex));
         }
 
+        output.row_add(input[currVertex],currVertex);
         for( int neighbor=offset_list[currVertex]; neighbor<offset_list[currVertex+1]; neighbor++){
-            
-            if (!visited[nebrs_list[neighbor]]){
-                visited[nebrs_list[neighbor]] = true;
-                queue.push_back(nebrs_list[neighbor]);
-                level[nebrs_list[neighbor]] = level[currVertex]+1;
-            }
-            output.row_add(input[currVertex],currVertex);
+            output.row_add(input[nebrs_list[neighbor]], currVertex);
         }
 
         if (!reverse){
             output.row_normalize(currVertex, snaph->get_degree(currVertex));
-        } 
+        }  
     }
 }
 

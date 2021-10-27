@@ -97,7 +97,10 @@ struct array2d_t {
     }
     void row_normalize(int64_t index, T degree) {
         T* row_ptr = data_ptr + col_count*index;
-        for (int64_t i = 0; i < col_count; ++i) {
+        if (degree == 0){
+            return;
+        }
+        for (int64_t i = 0; i < col_count; ++i) { 
             row_ptr[i] /= degree;
         }
     }
