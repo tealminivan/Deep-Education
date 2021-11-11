@@ -13,7 +13,7 @@ import create_graph as cg
 
 if __name__ == "__main__":
     ingestion_flag = gone.enumGraph.eUdir
-    ifile = "/home/pkumar/data/pubmed/graph_structure"
+    ifile = "/home/tmv/Desktop/pubmed/graph_structure"
     num_vcount = 19717
 
     G = cg.create_csr_graph_simple(ifile, num_vcount, ingestion_flag)
@@ -22,11 +22,11 @@ if __name__ == "__main__":
     net = gcnconv.GCN(G, input_feature_dim, 16, 3)
     #net = gcnconv.GCN(G, input_feature_dim, 16, 3, 3, 1)
 
-    feature = pubmed_util.read_feature_info("/home/pkumar/data/pubmed/feature/feature.txt")
-    train_id = pubmed_util.read_index_info("/home/pkumar/data/pubmed/index/train_index.txt")
-    test_id = pubmed_util.read_index_info("/home/pkumar/data/pubmed/index/test_index.txt")
-    test_y_label =  pubmed_util.read_label_info("/home/pkumar/data/pubmed/label/test_y_label.txt")
-    train_y_label =  pubmed_util.read_label_info("/home/pkumar/data/pubmed/label/y_label.txt")
+    feature = pubmed_util.read_feature_info("/home/tmv/Desktop/pubmed/feature/feature.txt")
+    train_id = pubmed_util.read_index_info("/home/tmv/Desktop/pubmed/index/train_index.txt")
+    test_id = pubmed_util.read_index_info("/home/tmv/Desktop/pubmed/index/test_index.txt")
+    test_y_label =  pubmed_util.read_label_info("/home/tmv/Desktop/pubmed/label/test_y_label.txt")
+    train_y_label =  pubmed_util.read_label_info("//home/tmv/Desktop/pubmed/label/y_label.txt")
     
 
 

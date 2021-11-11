@@ -25,6 +25,8 @@ string.h
 -
 omp.h
 -
+chrono
+-
 kernel.h
 /home/tmv/Desktop/project/Deep-Education/kernel/kernel.h
 
